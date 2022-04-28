@@ -1,0 +1,56 @@
+﻿@model FactsAssignment.Models.UploadProduct
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+<h4>Add Product</h4>
+<hr />
+
+<form method="post" enctype="multipart/form-data" asp-controller="Products" asp-action="UploadProduct">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Currency" class="control-label"></label>
+                <input asp-for="Currency" class="form-control" required />
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" required />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div>
+                <span>Select File:</span>
+                <input type="file" name="postedFile" multiple />
+                <br />
+                <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+                <span asp-validation-for="postedFile" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Add Product" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="DisplayProducts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
